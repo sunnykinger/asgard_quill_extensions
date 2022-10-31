@@ -7,9 +7,9 @@ import 'builders/youtube_embed_builder.dart';
 
 class QuillEmbeds {
   static List<EmbedBuilder> builders(
-          {void Function(GlobalKey videoContainerKey)? onVideoInit}) =>
+          {void Function(GlobalKey videoContainerKey)? onVideoInit,  void Function(bool isReadOnly)? onImageTapped}) =>
       [
-        ImageEmbedBuilder(),
+        ImageEmbedBuilder(onImageTapped: onImageTapped),
         YoutubeEmbedBuilder(onVideoInit: onVideoInit),
       ];
 
