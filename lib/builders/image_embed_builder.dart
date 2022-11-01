@@ -9,7 +9,8 @@ import 'package:tuple/tuple.dart';
 import '../utils.dart';
 
 class ImageEmbedBuilder implements EmbedBuilder {
-  final void Function(bool isReadOnly)? onImageTapped;
+  final void Function(bool isReadOnly, Tuple2<double?, double?>? widthHeight)?
+      onImageTapped;
 
   ImageEmbedBuilder({this.onImageTapped});
 
@@ -62,7 +63,7 @@ class ImageEmbedBuilder implements EmbedBuilder {
     if (!readOnly && base.isMobile()) {
       return GestureDetector(
           onTap: () {
-            onImageTapped?.call(false);
+            onImageTapped?.call(false, widthHeight);
           },
           child: image);
     }
@@ -79,7 +80,7 @@ class ImageEmbedBuilder implements EmbedBuilder {
       BuildContext context, String imageUrl, Widget image) {
     return GestureDetector(
         onTap: () {
-          onImageTapped?.call(true);
+          onImageTapped?.call(true, null);
         },
         child: image);
   }

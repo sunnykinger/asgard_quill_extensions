@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:string_validator/string_validator.dart';
 
 class Utils{
@@ -32,5 +33,15 @@ class Utils{
     }
     return Image.file(File(imageUrl),
         width: width, height: height, alignment: alignment);
+  }
+
+  static String getImageStyleString(QuillController controller) {
+    final String? s = controller
+        .getAllSelectionStyles()
+        .firstWhere((s) => s.attributes.containsKey(Attribute.style.key),
+        orElse: () => Style())
+        .attributes[Attribute.style.key]
+        ?.value;
+    return s ?? '';
   }
 }

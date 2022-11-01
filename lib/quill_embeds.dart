@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tuple/tuple.dart';
 
 import 'builders/image_embed_builder.dart';
 import 'builders/youtube_embed_builder.dart';
 
 class QuillEmbeds {
   static List<EmbedBuilder> builders(
-          {void Function(GlobalKey videoContainerKey)? onVideoInit,  void Function(bool isReadOnly)? onImageTapped}) =>
+          {void Function(GlobalKey videoContainerKey)? onVideoInit,
+          void Function(bool isReadOnly, Tuple2<double?, double?>? widthHeight)?
+              onImageTapped}) =>
       [
         ImageEmbedBuilder(onImageTapped: onImageTapped),
         YoutubeEmbedBuilder(onVideoInit: onVideoInit),
