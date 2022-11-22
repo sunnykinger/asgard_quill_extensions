@@ -15,7 +15,7 @@ dependencies:
   #youtube player
   youtube_player_iframe: ^2.3.0
   #quill
-  flutter_quill: ^6.0.8+1
+  flutter_quill: ^6.1.6
   #string validator
   string_validator: ^0.3.0
   #font_awesome
