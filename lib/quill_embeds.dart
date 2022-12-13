@@ -10,9 +10,12 @@ class QuillEmbeds {
   static List<EmbedBuilder> builders(
           {void Function(GlobalKey videoContainerKey)? onVideoInit,
           void Function(bool isReadOnly, Tuple2<double?, double?>? widthHeight)?
-              onImageTapped}) =>
+              onImageTapped,
+          Color? progressIndicatorColor}) =>
       [
-        ImageEmbedBuilder(onImageTapped: onImageTapped),
+        ImageEmbedBuilder(
+            onImageTapped: onImageTapped,
+            progressLoaderColor: progressIndicatorColor),
         YoutubeEmbedBuilder(onVideoInit: onVideoInit),
       ];
 

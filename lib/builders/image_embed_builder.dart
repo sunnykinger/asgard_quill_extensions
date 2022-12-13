@@ -13,9 +13,11 @@ class ImageEmbedBuilder implements EmbedBuilder {
   final void Function(bool isReadOnly, Tuple2<double?, double?>? widthHeight)?
       onImageTapped;
 
-  final Color progressLoaderColor;
-  ImageEmbedBuilder(
-      {this.onImageTapped, this.progressLoaderColor = Colors.blue});
+  final Color? progressLoaderColor;
+  ImageEmbedBuilder({
+    this.onImageTapped,
+    this.progressLoaderColor,
+  });
 
   @override
   String get key => BlockEmbed.imageType;

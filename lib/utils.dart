@@ -23,7 +23,7 @@ class Utils {
     double? width,
     double? height,
     Alignment alignment = Alignment.center,
-    required Color progressLoaderColor,
+    required Color? progressLoaderColor,
   }) {
     if (isImageBase64(imageUrl)) {
       return Image.memory(base64.decode(imageUrl),
@@ -36,7 +36,7 @@ class Utils {
         alignment: alignment,
         placeholder: (context, url) => Center(
             child: CircularProgressIndicator(
-          color: progressLoaderColor,
+          color: progressLoaderColor ?? Colors.blue,
         )),
         errorWidget: (context, url, error) => const Icon(Icons.error),
         width: width,
