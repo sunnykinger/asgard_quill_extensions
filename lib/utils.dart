@@ -35,8 +35,6 @@ class Utils {
         width: width,
         height: height,
       );
-      // return Image.network(imageUrl,
-      //     width: width, height: height, alignment: alignment);
     }
     return Image.file(File(imageUrl),
         width: width, height: height, alignment: alignment);
