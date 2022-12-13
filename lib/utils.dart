@@ -18,8 +18,13 @@ class Utils {
     return url;
   }
 
-  static Widget imageByUrl(String imageUrl,
-      {double? width, double? height, Alignment alignment = Alignment.center}) {
+  static Widget imageByUrl(
+    String imageUrl, {
+    double? width,
+    double? height,
+    Alignment alignment = Alignment.center,
+    required Color progressLoaderColor,
+  }) {
     if (isImageBase64(imageUrl)) {
       return Image.memory(base64.decode(imageUrl),
           width: width, height: height, alignment: alignment);
@@ -29,8 +34,10 @@ class Utils {
       return CachedNetworkImage(
         imageUrl: imageUrl,
         alignment: alignment,
-        placeholder: (context, url) =>
-            const Center(child: CircularProgressIndicator()),
+        placeholder: (context, url) => Center(
+            child: CircularProgressIndicator(
+          color: progressLoaderColor,
+        )),
         errorWidget: (context, url, error) => const Icon(Icons.error),
         width: width,
         height: height,

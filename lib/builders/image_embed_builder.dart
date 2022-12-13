@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/extensions.dart' as base;
@@ -13,7 +13,9 @@ class ImageEmbedBuilder implements EmbedBuilder {
   final void Function(bool isReadOnly, Tuple2<double?, double?>? widthHeight)?
       onImageTapped;
 
-  ImageEmbedBuilder({this.onImageTapped});
+  final Color progressLoaderColor;
+  ImageEmbedBuilder(
+      {this.onImageTapped, this.progressLoaderColor = Colors.blue});
 
   @override
   String get key => BlockEmbed.imageType;
@@ -27,7 +29,8 @@ class ImageEmbedBuilder implements EmbedBuilder {
   ) {
     assert(!kIsWeb, 'Please provide image EmbedBuilder for Web');
     final imageUrl = Utils.standardizeImageUrl(node.value.data);
-    Widget image = Utils.imageByUrl(imageUrl);
+    Widget image =
+        Utils.imageByUrl(imageUrl, progressLoaderColor: progressLoaderColor);
     Tuple2<double?, double?>? widthHeight;
     final style = node.style.attributes['style'];
     if (base.isMobile() && style != null) {
@@ -51,13 +54,17 @@ class ImageEmbedBuilder implements EmbedBuilder {
         final a = base.getAlignment(attrs[Attribute.mobileAlignment]);
         image = Padding(
             padding: EdgeInsets.all(m),
-            child:
-                Utils.imageByUrl(imageUrl, width: w, height: h, alignment: a));
+            child: Utils.imageByUrl(imageUrl,
+                width: w,
+                height: h,
+                alignment: a,
+                progressLoaderColor: progressLoaderColor));
       }
     }
 
     if (widthHeight == null) {
-      image = Utils.imageByUrl(imageUrl);
+      image =
+          Utils.imageByUrl(imageUrl, progressLoaderColor: progressLoaderColor);
       widthHeight = Tuple2((image as CachedNetworkImage).width, image.height);
     }
 
