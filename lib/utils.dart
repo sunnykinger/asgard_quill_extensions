@@ -29,8 +29,8 @@ class Utils {
       return CachedNetworkImage(
         imageUrl: imageUrl,
         alignment: alignment,
-        placeholder: (context, url) => CircularProgressIndicator(),
-        errorWidget: (context, url, error) => Icon(Icons.error),
+        placeholder: (context, url) => const CircularProgressIndicator(),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
         width: width,
         height: height,
       );

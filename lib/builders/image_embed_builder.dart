@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +58,7 @@ class ImageEmbedBuilder implements EmbedBuilder {
 
     if (widthHeight == null) {
       image = Utils.imageByUrl(imageUrl);
-      widthHeight = Tuple2((image as Image).width, image.height);
+      widthHeight = Tuple2((image as CachedNetworkImage).width, image.height);
     }
 
     if (!readOnly && base.isMobile()) {
