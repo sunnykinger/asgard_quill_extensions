@@ -1,12 +1,12 @@
-
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:string_validator/string_validator.dart';
 
-class Utils{
+class Utils {
   static bool isImageBase64(String imageUrl) {
     return !imageUrl.startsWith('http') && isBase64(imageUrl);
   }
@@ -18,18 +18,22 @@ class Utils{
     return url;
   }
 
-  static Image imageByUrl(String imageUrl,
-      {double? width,
-        double? height,
-        AlignmentGeometry alignment = Alignment.center}) {
+  static Widget imageByUrl(String imageUrl,
+      {double? width, double? height, Alignment alignment = Alignment.center}) {
     if (isImageBase64(imageUrl)) {
       return Image.memory(base64.decode(imageUrl),
           width: width, height: height, alignment: alignment);
     }
 
     if (imageUrl.startsWith('http')) {
-      return Image.network(imageUrl,
-          width: width, height: height, alignment: alignment);
+      return CachedNetworkImage(
+        imageUrl: imageUrl,
+        alignment: alignment,
+        width: width,
+        height: height,
+      );
+      // return Image.network(imageUrl,
+      //     width: width, height: height, alignment: alignment);
     }
     return Image.file(File(imageUrl),
         width: width, height: height, alignment: alignment);
@@ -39,7 +43,7 @@ class Utils{
     final String? s = controller
         .getAllSelectionStyles()
         .firstWhere((s) => s.attributes.containsKey(Attribute.style.key),
-        orElse: () => Style())
+            orElse: () => Style())
         .attributes[Attribute.style.key]
         ?.value;
     return s ?? '';

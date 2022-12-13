@@ -24,6 +24,8 @@ dependencies:
   tuple: ^2.0.1
   #url_launcher
   url_launcher: ^6.1.6
+  #cache_network_image 
+  cached_network_image: ^3.2.3
 
 dev_dependencies:
   flutter_test:
