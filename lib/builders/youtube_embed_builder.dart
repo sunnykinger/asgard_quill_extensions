@@ -1,11 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
-import 'package:flutter_quill/extensions.dart' as base;
 
 import '../widgets/youtube_player.dart';
 
-class YoutubeEmbedBuilder implements EmbedBuilder {
+class YoutubeEmbedBuilder extends EmbedBuilder {
   YoutubeEmbedBuilder({this.onVideoInit});
 
   final void Function(GlobalKey videoContainerKey)? onVideoInit;
@@ -14,12 +12,8 @@ class YoutubeEmbedBuilder implements EmbedBuilder {
   String get key => BlockEmbed.videoType;
 
   @override
-  Widget build(
-      BuildContext context,
-      QuillController controller,
-      base.Embed node,
-      bool readOnly,
-      ) {
+  Widget build(BuildContext context, QuillController controller, Embed node,
+      bool readOnly, bool inline) {
     final videoUrl = node.value.data;
     if (videoUrl.contains('youtube.com') || videoUrl.contains('youtu.be')) {
       return YouTubePlayer(
