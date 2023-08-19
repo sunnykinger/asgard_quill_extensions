@@ -1,6 +1,6 @@
 name: asgard_quill_extensions
 description: Extensions for Quill
-version: 0.0.1
+version: 0.1.0
 homepage:
 
 environment:
@@ -15,9 +15,9 @@ dependencies:
   #youtube player
   youtube_player_iframe: ^2.3.0
   #quill
-  flutter_quill: ^7.1.18
+  flutter_quill: ^7.4.1
   #string validator
-  string_validator: ^0.3.0
+  string_validator: ^1.0.0
   #font_awesome
   font_awesome_flutter: ^10.2.1
   #tuple

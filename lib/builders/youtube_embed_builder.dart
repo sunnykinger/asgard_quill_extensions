@@ -13,7 +13,7 @@ class YoutubeEmbedBuilder extends EmbedBuilder {
 
   @override
   Widget build(BuildContext context, QuillController controller, Embed node,
-      bool readOnly, bool inline) {
+      bool readOnly, bool inline, TextStyle textStyle) {
     final videoUrl = node.value.data;
     if (videoUrl.contains('youtube.com') || videoUrl.contains('youtu.be')) {
       return YouTubePlayer(

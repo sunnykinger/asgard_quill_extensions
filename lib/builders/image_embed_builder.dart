@@ -33,7 +33,7 @@ class ImageEmbedBuilder extends EmbedBuilder {
 
   @override
   Widget build(BuildContext context, QuillController controller,
-      base.Embed node, bool readOnly, bool inline) {
+      base.Embed node, bool readOnly, bool inline, TextStyle textStyle) {
     assert(!kIsWeb, 'Please provide image EmbedBuilder for Web');
     final imageUrl = Utils.standardizeImageUrl(node.value.data);
     Widget image =
